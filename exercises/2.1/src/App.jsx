@@ -3,11 +3,11 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-const ClickCounter = () => {
+const ClickCounter = ({ titre, message }) => {
   const [count, setCount] = useState(0);
   return (
     <button onClick={() => setCount((count) => count + 1)}>
-      count is {count}
+      {count >= 10 ? message : `${titre} (${count})` }
     </button>
   );
 };
@@ -24,7 +24,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <ClickCounter />
+      <ClickCounter titre="Click here !" message="You are a master in the art of clicking !"/>
       <div className="card">
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR

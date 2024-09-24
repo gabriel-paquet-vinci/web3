@@ -3,11 +3,12 @@ import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 
-const ClickCounter = ({ titre, message }) => {
+const ClickCounter = ({ titre, message1, message2 }) => {
   const [count, setCount] = useState(0);
+  const [display, setDisplay] = useState(false)
   return (
-    <button onClick={() => setCount((count) => count + 1)}>
-      {count >= 10 ? message : `${titre} (${count})` }
+    <button onClick={() => setCount((count) => count + 1)} onMouseEnter={() => setDisplay(!display)} onMouseLeave={() => setDisplay(!display)}>
+      {display ? message2 : count >= 10 ? message1 : `${titre} (${count})` }
     </button>
   );
 };
@@ -24,7 +25,7 @@ function App() {
         </a>
       </div>
       <h1>Vite + React</h1>
-      <ClickCounter titre="Click here !" message="You are a master in the art of clicking !"/>
+      <ClickCounter titre="Click here !" message1="You are a master in the art of clicking !" message2="Please click on me now !"/>
       <div className="card">
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR

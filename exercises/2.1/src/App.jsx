@@ -4,10 +4,17 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 
 const ClickCounter = ({ titre, message1, message2 }) => {
-  const [count, setCount] = useState(0);
+
+  const [count, setCount] = useState(JSON.parse(localStorage.getItem("count")));
   const [display, setDisplay] = useState(false)
+
+  const handleClick = () => {
+    setCount(count+1)
+    localStorage.setItem("count", JSON.stringify(count))
+  }
+
   return (
-    <button onClick={() => setCount((count) => count + 1)} onMouseEnter={() => setDisplay(!display)} onMouseLeave={() => setDisplay(!display)}>
+    <button onClick={handleClick} onMouseEnter={() => setDisplay(!display)} onMouseLeave={() => setDisplay(!display)}>
       {display ? message2 : count >= 10 ? message1 : `${titre} (${count})` }
     </button>
   );
